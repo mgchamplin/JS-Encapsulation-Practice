@@ -1,24 +1,27 @@
-// The array of ingredients the user can add to a sandwich
-//  This will be updated after we fetch.
-let ingredients = [];
+const ingredientList = {
 
-// Updates the DOM to display a list of ingredients
-function renderIngredientList() {
-    const ingredientUl = document.querySelector('.ingredient-list');
+    ingredients: [],
 
-    // Empty the ingredientList before adding any content to it.
-    ingredientUl.innerHTML = '';
+    // The array of ingredients the user can add to a sandwich:
+    //  This will be updated after we fetch.
+    
+    // Updates the DOM to display a list of ingredients:
+    renderIngredientList:function {
+        const ingredientList = document.querySelector('.ingredient-list');
+    
+        // Empty the ingredientList before adding any content to it.
+        ingredientUl.innerHTML = '';
 
-    ingredients.forEach(ingredient => {
-        const ingredientDiv = renderIngredientCard(ingredient);
-        ingredientUl.append(ingredientDiv)
-    })
-}
+        this.ingredients.forEach(ingredient => {
+            const ingredientDiv = renderIngredientCard(ingredient);
+            ingredientUl.append(ingredientDiv)
+            })
+    }
 
 // Creates a DIV to display a single ingredient
-function renderIngredientCard(ingredient) {
+ renderIngredientCard: function(ingredient) {
     const ingredientCard = document.createElement('div');
-    ingredientCard.className = 'card'
+    this.ingredientCard.className = 'card'
 
     const sandwichHasIngredient = selectedSandwich.ingredients.includes(ingredient.name);
     ingredientCard.innerHTML = `
@@ -41,23 +44,35 @@ function renderIngredientCard(ingredient) {
         </div>
     `
     const toggleButton = ingredientCard.querySelector('.toggle-button')
-    toggleButton.addEventListener('click', () => {
-        toggleIngredient(ingredient)
+    this.toggleButton.addEventListener('click', () => {
+        this.toggleIngredient(ingredient)
     })
 
     return ingredientCard
 }
 
 // Runs when the user clicks 'Add' or 'Remove' on a ingredient card
-function toggleIngredient(ingredient) {
+    toggleIngredient function(ingredient) {
     let sandwichHasIngredient = selectedSandwich.ingredients.includes(ingredient.name);
     if (sandwichHasIngredient) {
         selectedSandwich.ingredients = selectedSandwich.ingredients.filter(x => x !== ingredient.name)
     } else {
-        sandwichHasIngredient = true;
+        this.sandwichHasIngredient = true;
         selectedSandwich.ingredients.push(ingredient.name)
     }
-    saveSelectedSandwich()
-    renderCart()
-    renderIngredientList()
+    this.saveSelectedSandwich()
+    this.renderCart()
+    this.renderIngredientList()
 }
+
+}
+
+// The array of ingredients the user can add to a sandwich
+//  This will be updated after we fetch.
+let ingredients = [];
+
+// Updates the DOM to display a list of ingredients
+function renderIngredientList() {
+    const ingredientUl = document.querySelector('.ingredient-list');
+
+    
